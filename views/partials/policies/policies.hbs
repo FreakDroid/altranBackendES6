@@ -1,0 +1,90 @@
+{{! Import the contents of header.html from partials}}
+{{> navigation}}
+{{#if error}}
+    <div class="container">
+        <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {{#if error}}
+                <div class="alert alert-danger">
+                        <span id="errorDiv">{{error}}</span>
+                </div>
+            {{/if}}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    </div>
+{{else}}
+    <div class="container">
+    <div>
+        <div class="form-group row">
+            <label for="textId" class="col-sm-2 col-form-label">User Id</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="textId" value="{{user.id}}" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="textName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="textName" value="{{user.name}}" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="textEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="textEmail" value="{{user.email}}" disabled>
+            </div>
+        </div>
+        {{#if policies}} 
+        <div class="form-group row">
+            <label for="textPolicies" class="col-sm-2 col-form-label">Policies count</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="textPolicies" value="{{policies.length}}" disabled>
+            </div>
+        </div>
+        {{else}}
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Policies count</label>
+            <div class="col-sm-10">
+                <span>This user doesn't have policies</span>
+            </div>
+        </div>
+        {{/if}}
+        <div class="form-group row">
+            <div class="col-10">
+                <a href="/policiesSearcher" class="btn btn-default">Go Searcher</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div>
+    {{#if policies}} 
+    <table id="myTable" class="table table-striped">
+    <thead> 
+        <th>Id</th> 
+        <th>Amount Insured</th> 
+        <th>Email</th>
+        <th>User Id</th> 
+        <th>installmentPayment</th>
+    </thead> 
+    <tbody> 
+        {{#each policies}} 
+        <tr> 
+            <td>{{id}}</td> 
+            <td>{{amountInsured}}</td> 
+            <td>{{email}}</td> 
+            <td>{{clientId}}</td> 
+            <td>{{installmentPayment}}</td> 
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+    {{/if}}
+</div>
+{{/if}}
+
+
+
